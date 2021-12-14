@@ -1,0 +1,50 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  --nav-height: 65px;
+  --button-color: #ffd803;
+  --bold-text-color: #272343;
+  --text-color: #2d334a;
+  --background-color: #fffffe;
+}
+
+/* Common */
+body {
+  background-color: var(--background-color);
+}
+
+nav {
+  width: 100vw;
+  height: var(--nav-height);
+  padding: 0px 40px;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 1;
+
+  .login-btn {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--button-color);
+    color: var(--bold-text-color);
+    font-weight: bold;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
+  }
+}
