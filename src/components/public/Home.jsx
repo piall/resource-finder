@@ -1,8 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { DiJavascript1 } from 'react-icons/di';
+
+import styles from './Home.module.scss';
 import Navbar from './Navbar';
+import Footer from '../common/Footer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,20 +25,41 @@ export default function PublicHome() {
       <Navbar />
       <div className="page-container-scroll">
         <div className="page-container">
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <h1>Welcome</h1>
-              <h2>Find your learning resources easily!</h2>
-              <Button variant="contained" color="primary">
-                Login
-              </Button>
+          <section id="Home" className={styles.top_section}>
+            <Grid container alignItems="center" spacing={2}>
+              <Grid item xs={12} md={6}>
+                <h1>Hi!</h1>
+                <p>Find your learning resources easily with us!</p>
+                <Button variant="contained" color="primary">
+                  Sign Up
+                </Button>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <img src="/illustrations/search.svg" />
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Paper className={classes.paper}>xs=6</Paper>
-            </Grid>
-          </Grid>
+          </section>
+          <section id="Topics" className={styles.section}>
+            <div className="title">
+              <h1>TOPICS</h1>
+            </div>
+            <div className={styles.topics}>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item xs={3}>
+                  <DiJavascript1 />
+                </Grid>
+                <Grid item xs={3}>
+                  <DiJavascript1 />
+                </Grid>
+                <Grid item xs={3}>
+                  <DiJavascript1 />
+                </Grid>
+              </Grid>
+            </div>
+          </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
