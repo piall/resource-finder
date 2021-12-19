@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap');
+
 html,
 body {
   padding: 0;
@@ -13,39 +16,49 @@ a {
 
 * {
   box-sizing: border-box;
+  margin: 0px;
+
   --nav-height: 65px;
-  --button-color: #ffd803;
+  --footer-height: 50px;
+  --nav-color: #ffffff;
+  --background-color: #ffffff;
+  --yellow-color: #ffd803;
   --bold-text-color: #272343;
   --text-color: #2d334a;
-  --background-color: #fffffe;
 }
 
 /* Common */
 body {
   background-color: var(--background-color);
+  font-family: 'Sora', sans-serif;
 }
 
 nav {
   width: 100vw;
   height: var(--nav-height);
-  padding: 0px 40px;
-  background-color: var(--background-color);
+  background-color: var(--nav-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
   position: fixed;
   z-index: 1;
+  padding: 0 50px;
 
-  .login-btn {
-    width: 100px;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--button-color);
-    color: var(--bold-text-color);
-    font-weight: bold;
-    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
+  .brand {
+    img {
+      height: 25px;
+    }
+  }
+
+  .links-container {
+    a {
+      padding: 20px;
+    }
+
+    a.active {
+      color: var(--yellow-color);
+    }
   }
 }
 
@@ -58,4 +71,15 @@ nav {
 
 .page-container {
   padding: 0px 10px 10px 10px;
+}
+
+footer {
+  background-color: var(--yellow-color);
+  width: 100vw;
+  height: var(--footer-height);
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
