@@ -35,7 +35,7 @@ export default function Navbar() {
           </Link>
         </div>
         <Button variant="contained" color="primary">
-          <Link href="/siginin">Sign In</Link>
+          <Link href="/signin">Sign In</Link>
         </Button>
       </nav>
     </div>
