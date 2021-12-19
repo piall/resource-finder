@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from '../styles/Home.module.scss';
 import { useEffect, useState } from 'react';
 import { getFromLocalStorage } from '../src/helpers/localStorage';
 import PublicHome from '../src/components/public/Home';
@@ -13,6 +12,12 @@ export default function Home() {
     }
   });
   return (
-    <div className={styles.container}>{!loginStatus && <PublicHome />}</div>
+    <div>
+      <Head>
+        <title>Resource Finder</title>
+        <link rel="icon" href="/favicon.svg" />
+      </Head>
+      {!loginStatus && <PublicHome />}
+    </div>
   );
 }
