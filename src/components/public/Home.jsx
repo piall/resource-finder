@@ -39,6 +39,17 @@ export default function PublicHome() {
               </Grid>
             </Grid>
           </section>
+          <section id="About" className={styles.section}>
+            <div className="title">
+              <h1>About</h1>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+              commodi voluptate doloremque! Cupiditate nostrum unde perferendis!
+              Qui, nobis quis repellat quasi inventore illum, iure eaque
+              asperiores mollitia pariatur consectetur doloremque!
+            </p>
+          </section>
           <section id="Topics" className={styles.section}>
             <div className="title">
               <h1>TOPICS</h1>
