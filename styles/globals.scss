@@ -103,6 +103,12 @@ footer {
   align-items: center;
 }
 
+.link.blue {
+  color: var(--purple-light);
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .MuiCircularProgress-root {
   padding: 10px;
 }
