@@ -25,6 +25,8 @@ a {
   --yellow-color: #ffd803;
   --bold-text-color: #272343;
   --text-color: #2d334a;
+
+  --purple-light: rgb(146, 1, 146);
 }
 
 /* Common */
@@ -103,4 +105,24 @@ footer {
 
 .MuiCircularProgress-root {
   padding: 10px;
+}
+
+/* Button */
+button.purple {
+  background-color: var(--purple-light);
+  color: white;
+
+  &:hover {
+    background-color: var(--purple-light);
+  }
+}
+
+.btn-container {
+  button {
+    margin-bottom: 10px;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
 }
