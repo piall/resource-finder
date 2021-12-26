@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -31,7 +32,7 @@ export default function PublicHome() {
                 <h1>Hi!</h1>
                 <p>Find your learning resources easily with us!</p>
                 <Button variant="contained" color="primary">
-                  Sign Up
+                  <Link href="/signup">Sign Up</Link>
                 </Button>
               </Grid>
               <Grid item xs={12} md={6}>
