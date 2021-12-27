@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from '@material-ui/core/Button';
 
 export default function Navbar() {
@@ -7,7 +8,7 @@ export default function Navbar() {
       <nav className="public">
         <p className="brand">
           <Link href="/admin/home">
-            <img src="/logo.svg" />
+            <Image src="/logo.svg" />
           </Link>
         </p>
         <div className="links-container">
