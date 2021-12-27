@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Button from '@material-ui/core/Button';
 
@@ -10,7 +11,7 @@ export default function Navbar() {
       <nav className="public">
         <p className="brand">
           <Link href="/">
-            <img src="/logo.svg" />
+            <Image src="/logo.svg" alt="logo" />
           </Link>
         </p>
         <div className="links-container">
