@@ -7,12 +7,12 @@ export default function Navbar() {
     <div>
       <nav className="public">
         <p className="brand">
-          <Link href="/user/home">
+          <Link href="/user/">
             <Image src="/logo.svg" alt="logo" />
           </Link>
         </p>
         <div className="links-container">
-          <Link href="/user/home">Home</Link>
+          <Link href="/user/">Home</Link>
           <Link href="/user/topic">Topic</Link>
           <Link href="/user/resource">Resource</Link>
           <Link href="/user/author">Author</Link>
