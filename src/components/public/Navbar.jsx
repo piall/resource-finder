@@ -11,7 +11,7 @@ export default function Navbar() {
       <nav className="public">
         <p className="brand">
           <Link href="/">
-            <Image src="/logo.svg" />
+            <Image src="/logo.svg" alt="logo" />
           </Link>
         </p>
         <div className="links-container">

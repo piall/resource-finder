@@ -37,7 +37,7 @@ export default function PublicHome() {
                 </Button>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Image src="/illustrations/search.svg" />
+                <Image src="/illustrations/search.svg" alt="search" />
               </Grid>
             </Grid>
           </section>
