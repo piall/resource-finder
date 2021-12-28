@@ -272,6 +272,15 @@ div[aria-labelledby='add-vote-modal'] > .modal-container {
   }
 }
 
+.author-articles {
+  padding: 20px 0px;
+
+  .image-container {
+    max-width: 120px;
+    width: 200px;
+  }
+}
+
 /*Topic Page */
 .topic-card-container {
   display: flex;

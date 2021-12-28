@@ -6,9 +6,11 @@ import {
   RadioGroup,
   FormLabel,
   Radio,
+  Grid,
 } from '@material-ui/core';
 import { MdHowToVote } from 'react-icons/md';
 import { AiOutlineClear } from 'react-icons/ai';
+import ArticleResource from '../../../src/components/private/resource/ArticleResource';
 
 export default function AuthorDetails() {
   //modal state
@@ -33,11 +35,30 @@ export default function AuthorDetails() {
         >
           Vote Author
         </Button>
-        <div className="articles-container">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae
-          perspiciatis quis aspernatur, repellendus amet veniam voluptas minima
-          perferendis adipisci dolores praesentium enim nesciunt! Soluta iusto
-          voluptatum unde, id quia ut.
+
+        <div className="author-articles">
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <ArticleResource
+                title={'lorem'}
+                description={`Lorem ipsum dolor sit amet consectetur, adipisicing elit`}
+                imgURL={
+                  'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
+                }
+                link={'https://www.lorem.com'}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <ArticleResource
+                title={'lorem'}
+                description={`Lorem ipsum dolor sit amet consectetur, adipisicing elit`}
+                imgURL={
+                  'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
+                }
+                link={'https://www.lorem.com'}
+              />
+            </Grid>
+          </Grid>
         </div>
 
         <Modal
