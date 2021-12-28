@@ -27,6 +27,7 @@ a {
   --text-color: #2d334a;
 
   --purple-light: rgb(146, 1, 146);
+  --red-light: rgb(245, 17, 17);
 }
 
 /* Common */
@@ -127,6 +128,15 @@ button.purple {
   }
 }
 
+button.danger {
+  background-color: var(--red-light);
+  color: white;
+
+  &:hover {
+    background-color: var(--red-light);
+  }
+}
+
 .btn-container {
   button {
     margin-bottom: 10px;
@@ -150,6 +160,29 @@ div[aria-labelledby='add-author-modal'] > .modal-container {
 
     button {
       margin-top: 20px;
+    }
+  }
+}
+
+/*Author Page */
+.authors-container {
+  margin: 10px 0px;
+
+  .author-container {
+    padding: 20px 20px;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 20px;
     }
   }
 }
