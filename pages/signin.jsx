@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -37,7 +36,7 @@ export default function SignIn() {
         <div className="page-container registration">
           <Grid container alignItems="center">
             <Grid item xs={12} md={6}>
-              <Image src="/logo.svg" alt="logo" />
+              <img src="/logo.svg" alt="logo" />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField

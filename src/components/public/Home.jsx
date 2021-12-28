@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -37,7 +36,7 @@ export default function PublicHome() {
                 </Button>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Image src="/illustrations/search.svg" alt="search" />
+                <img src="/illustrations/search.svg" alt="search" />
               </Grid>
             </Grid>
           </section>
