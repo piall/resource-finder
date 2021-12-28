@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import { Grid, Button, Modal, TextField } from '@material-ui/core';
 import { HiPlus, HiPencil, HiOutlineTrash } from 'react-icons/hi';
 
 export default function Topic() {
   //modal state
   const [addAuthorOpen, setAddAuthorOpen] = useState(false);
-  const [voteOpen, setVoteOpen] = useState(false);
 
   //modal handler
   const handleAddAuthorModal = () => {
@@ -36,10 +36,12 @@ export default function Topic() {
         <div className="authors-container">
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
-              <div className="author-container">
-                <img src="https://v4.mui.com/static/ads-in-house/tidelift.png" />
-                <h2>Md. Pial Ahamed</h2>
-              </div>
+              <Link href="/user/author/1">
+                <div className="author-container">
+                  <img src="https://v4.mui.com/static/ads-in-house/tidelift.png" />
+                  <h2>Md. Pial Ahamed</h2>
+                </div>
+              </Link>
             </Grid>
             <Grid item xs={12} md={4}>
               <div className="author-container">
