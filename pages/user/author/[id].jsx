@@ -1,6 +1,14 @@
 import { useState } from 'react';
-import { Button, Modal } from '@material-ui/core';
+import {
+  Button,
+  Modal,
+  FormControlLabel,
+  RadioGroup,
+  FormLabel,
+  Radio,
+} from '@material-ui/core';
 import { MdHowToVote } from 'react-icons/md';
+import { AiOutlineClear } from 'react-icons/ai';
 
 export default function AuthorDetails() {
   //modal state
@@ -39,6 +47,29 @@ export default function AuthorDetails() {
         >
           <div className="modal-container">
             <div className="modal-body">
+              <FormLabel component="legend">Category</FormLabel>
+              <RadioGroup
+                row
+                aria-label="gender"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="beginner"
+                  control={<Radio />}
+                  label="Beginner"
+                />
+                <FormControlLabel
+                  value="intermediate"
+                  control={<Radio />}
+                  label="Intermediate"
+                />
+                <FormControlLabel
+                  value="advance"
+                  control={<Radio />}
+                  label="Advance"
+                />
+                <Button startIcon={<AiOutlineClear />} />
+              </RadioGroup>
               <center>
                 <Button
                   variant="contained"

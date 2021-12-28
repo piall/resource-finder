@@ -24,13 +24,6 @@ export default function Topic() {
           >
             Add Author
           </Button>
-          <Button
-            variant="contained"
-            className="danger"
-            startIcon={<HiOutlineTrash />}
-          >
-            Delete Author
-          </Button>
         </div>
 
         <div className="authors-container">
