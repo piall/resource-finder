@@ -136,3 +136,20 @@ button.purple {
     }
   }
 }
+
+/* Modal */
+div[aria-labelledby='add-author-modal'] > .modal-container {
+  .modal-body {
+    position: absolute;
+    width: 500px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}
