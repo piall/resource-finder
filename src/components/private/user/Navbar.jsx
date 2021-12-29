@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Button from '@material-ui/core/Button';
 
-export default function Navbar() {
+export default function UserNavbar() {
   return (
     <div>
       <nav className="public">

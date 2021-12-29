@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Button from '@material-ui/core/Button';
 
-export default function Navbar() {
+export default function PublicNavbar() {
   const router = useRouter();
 
   return (
