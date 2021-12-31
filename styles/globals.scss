@@ -180,6 +180,15 @@ footer {
   }
 }
 
+.title-with-btn-container {
+  display: flex;
+  justify-content: space-between;
+
+  .title {
+    font-size: 18;
+  }
+}
+
 /* Button */
 button.purple {
   background-color: var(--purple-light);

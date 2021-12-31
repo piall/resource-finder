@@ -15,10 +15,11 @@ export default function Topic() {
 
   return (
     <UserLayout>
-      <div className="btn-container">
+      <div className="title-with-btn-container">
+        <h2 className="title">Authors</h2>
         <Button
           variant="contained"
-          color="primary"
+          className="purple"
           startIcon={<HiPlus />}
           onClick={handleAddAuthorModal}
         >

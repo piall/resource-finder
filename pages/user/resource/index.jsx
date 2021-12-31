@@ -6,10 +6,11 @@ import {
   RadioGroup,
   FormLabel,
   Radio,
+  TextField,
 } from '@material-ui/core';
 import { useState } from 'react';
 
-import { HiSearch } from 'react-icons/hi';
+import { HiSearch, HiPlus } from 'react-icons/hi';
 import { AiOutlineClear } from 'react-icons/ai';
 import { MdHowToVote } from 'react-icons/md';
 
@@ -28,14 +29,29 @@ export default function Topic() {
 
   //modal state
   const [voteOpen, setVoteOpen] = useState(false);
+  const [addResourceModalOpen, setAddResourceModal] = useState(false);
 
   //modal handler
   const handleVoteModal = () => {
     setVoteOpen(!voteOpen);
   };
+  const handleAddTopicModal = () => {
+    setAddResourceModal(!addResourceModalOpen);
+  };
 
   return (
     <UserLayout>
+      <div className="title-with-btn-container">
+        <h2 className="title">Resources</h2>
+        <Button
+          variant="contained"
+          className="purple"
+          startIcon={<HiPlus />}
+          onClick={handleAddTopicModal}
+        >
+          Add Topic
+        </Button>
+      </div>
       <Grid container alignItems="center">
         <Grid item xs={10} md={9}>
           <div className="search-box-container">
@@ -144,6 +160,33 @@ export default function Topic() {
                 startIcon={<MdHowToVote />}
               >
                 Vote
+              </Button>
+            </center>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        open={addResourceModalOpen}
+        onClose={handleAddTopicModal}
+        aria-labelledby="add-author-modal"
+      >
+        <div className="modal-container">
+          <div className="modal-body">
+            <TextField
+              required
+              fullWidth
+              label="GitHub Handle"
+              placeholder="Enter GitHub Handle"
+              variant="outlined"
+            />
+            <center>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<HiPlus />}
+              >
+                Add
               </Button>
             </center>
           </div>
