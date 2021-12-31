@@ -5,7 +5,9 @@ export default function AdminLayout({ children }) {
   return (
     <>
       <AdminNavbar />
-      {children}
+      <div className="page-container-scroll">
+        <div className="page-container">{children}</div>
+      </div>
       <Footer />
     </>
   );
