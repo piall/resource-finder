@@ -33,25 +33,29 @@ export default function Topic() {
               <div className="author-container">
                 <img src="https://source.unsplash.com/1600x900/?boy" />
                 <h2>Md. Pial Ahamed</h2>
+                <p>0 vote</p>
               </div>
             </Link>
           </Grid>
           <Grid item xs={12} md={4}>
             <div className="author-container">
               <img src="https://source.unsplash.com/1600x900/?girl" />
-              <h2>Md. Pial Ahamed</h2>
+              <h2>Sadie W. Ramos</h2>
+              <p>233 votes</p>
             </div>
           </Grid>
           <Grid item xs={12} md={4}>
             <div className="author-container">
               <img src="https://source.unsplash.com/1600x900/?old" />
-              <h2>Md. Pial Ahamed</h2>
+              <h2>Doris W. Blount</h2>
+              <p>50 votes</p>
             </div>
           </Grid>
           <Grid item xs={12} md={4}>
             <div className="author-container">
-              <img src="https://source.unsplash.com/1600x900/?child" />
-              <h2>Md. Pial Ahamed</h2>
+              <img src="https://source.unsplash.com/1600x900/?anime" />
+              <h2>Kyra</h2>
+              <p>0 vote</p>
             </div>
           </Grid>
         </Grid>
