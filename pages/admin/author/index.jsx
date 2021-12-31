@@ -32,6 +32,7 @@ export default function Topic() {
         <Table>
           <TableHead>
             <TableRow>
+              <TableCell>ID</TableCell>
               <TableCell>Handle</TableCell>
               <TableCell>URL</TableCell>
               <TableCell>Added By</TableCell>
@@ -43,9 +44,14 @@ export default function Topic() {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.name}>
+              <TableRow key={row.id}>
+                <TableCell>{row.id}</TableCell>
                 <TableCell>{row.handle}</TableCell>
-                <TableCell>{row.url}</TableCell>
+                <TableCell>
+                  <a href={row.url} target="_blank">
+                    {row.url}
+                  </a>
+                </TableCell>
                 <TableCell>{row.addedBy}</TableCell>
                 <TableCell>
                   <Button>

@@ -1,4 +1,14 @@
 export const rows = [
-  { handle: 'piall', url: 'https://github.com/piall', addedBy: 'john' },
-  { handle: 'chiran', url: 'https://github.com/chiranSWE', addedBy: 'chirna' },
+  {
+    id: 'A-1',
+    handle: 'piall',
+    url: 'https://github.com/piall',
+    addedBy: 'john',
+  },
+  {
+    id: 'A-2',
+    handle: 'chiran',
+    url: 'https://github.com/chiranSWE',
+    addedBy: 'chirna',
+  },
 ];
