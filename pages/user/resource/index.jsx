@@ -10,9 +10,11 @@ import {
 import { useState } from 'react';
 
 import { HiSearch } from 'react-icons/hi';
-import { MdHowToVote } from 'react-icons/md';
 import { AiOutlineClear } from 'react-icons/ai';
+import { MdHowToVote } from 'react-icons/md';
+
 import Resource from '../../../src/components/private/resource/resource';
+import Vote from '../../../src/components/private/resource/Vote';
 import UserLayout from '../../../src/components/layout/UserLayout';
 
 export default function Topic() {
@@ -61,30 +63,51 @@ export default function Topic() {
         </Grid>
       </Grid>
 
-      <Grid container>
-        <Grid item xs={2}>
-          <div className="resource-left-container">
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<MdHowToVote />}
-              onClick={handleVoteModal}
-            >
-              Vote
-            </Button>
-            <p>Beginner (100)</p>
-            <p>JS</p>
-          </div>
+      <Grid container spacing={2}>
+        <Grid item>
+          <Grid container>
+            <Grid item xs={2}>
+              <Vote
+                handleVoteModal={handleVoteModal}
+                voteType={'Beginner'}
+                voteCount={100}
+                topic={'JS'}
+              />
+            </Grid>
+            <Grid item xs={12} md={10}>
+              <Resource
+                title={'Beginner JS'}
+                description={`From beginner to novice in JS`}
+                imgURL={
+                  'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
+                }
+                link={'https://www.javascriptbeginners.com'}
+              />
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={10}>
-          <Resource
-            title={'lorem'}
-            description={`Lorem ipsum dolor sit amet consectetur, adipisicing elit`}
-            imgURL={
-              'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
-            }
-            link={'https://www.lorem.com'}
-          />
+
+        <Grid item>
+          <Grid container>
+            <Grid item xs={2}>
+              <Vote
+                handleVoteModal={handleVoteModal}
+                voteType={'Advance'}
+                voteCount={0}
+                topic={'Python'}
+              />
+            </Grid>
+            <Grid item xs={12} md={10}>
+              <Resource
+                title={'Advance python'}
+                description={`Learn from the industry expert`}
+                imgURL={
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png'
+                }
+                link={'https://www.py.com'}
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
 
