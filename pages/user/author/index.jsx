@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Grid, Button, Modal, TextField } from '@material-ui/core';
 import { HiPlus, HiPencil, HiOutlineTrash } from 'react-icons/hi';
-import UserLayout from '../../../src/components/layout/PublicLayout';
+import UserLayout from '../../../src/components/layout/UserLayout';
 
 export default function Topic() {
   //modal state

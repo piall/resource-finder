@@ -13,7 +13,7 @@ import { HiSearch } from 'react-icons/hi';
 import { MdHowToVote } from 'react-icons/md';
 import { AiOutlineClear } from 'react-icons/ai';
 import Resource from '../../../src/components/private/resource/resource';
-import UserLayout from '../../../src/components/layout/PublicLayout';
+import UserLayout from '../../../src/components/layout/UserLayout';
 
 export default function Topic() {
   //state
