@@ -35,7 +35,7 @@ export default function Topic() {
   const handleVoteModal = () => {
     setVoteOpen(!voteOpen);
   };
-  const handleAddTopicModal = () => {
+  const handleAddResourceModal = () => {
     setAddResourceModal(!addResourceModalOpen);
   };
 
@@ -47,9 +47,9 @@ export default function Topic() {
           variant="contained"
           className="purple"
           startIcon={<HiPlus />}
-          onClick={handleAddTopicModal}
+          onClick={handleAddResourceModal}
         >
-          Add Topic
+          Add Resource
         </Button>
       </div>
       <Grid container alignItems="center">
@@ -168,7 +168,7 @@ export default function Topic() {
 
       <Modal
         open={addResourceModalOpen}
-        onClose={handleAddTopicModal}
+        onClose={handleAddResourceModal}
         aria-labelledby="add-author-modal"
       >
         <div className="modal-container">
