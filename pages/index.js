@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { getFromLocalStorage } from '../src/helpers/localStorage';
 import PublicHome from '../src/components/public/Home';

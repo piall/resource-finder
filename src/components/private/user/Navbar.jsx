@@ -1,14 +1,13 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import Button from '@material-ui/core/Button';
 
-export default function Navbar() {
+export default function UserNavbar() {
   return (
     <div>
       <nav className="public">
         <p className="brand">
           <Link href="/user/">
-            <Image src="/logo.svg" alt="logo" />
+            <img src="/logo.svg" alt="logo" />
           </Link>
         </p>
         <div className="links-container">
