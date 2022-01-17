@@ -1,32 +1,31 @@
 const ResourceModel = require('../model/resource');
+const parseURL = require('../helpers/parseURL');
 
 async function addResource(req, res) {
-  const link = req.body.link;
-  const title = req.body.title;
-  const description = req.body.description;
-  const addedBy = req.body.addedBy;
-  const vote = {
-    beginner: 0,
-    intermediate: 0,
-    advance: 0,
-  };
-
-  console.log(req);
-
+  const url = await parseURL(req.body.link);
   const resource = new ResourceModel({
-    link,
-    title,
-    description,
-    vote,
-    addedBy,
+    ...req.body,
+    title: url.title,
+    description: url.description,
+    vote: {
+      beginner: 0,
+      intermediate: 0,
+      advance: 0,
+    },
   });
 
   try {
     await resource.save();
-    res.send('Success');
+    res.send({
+      success: true,
+      resource: resource,
+    });
   } catch (error) {
     console.log(error);
-    res.send(error);
+    res.send({
+      success: false,
+      error: error,
+    });
   }
 }
 
