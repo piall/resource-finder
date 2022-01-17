@@ -17,4 +17,8 @@ mongoose.connect(
 //API - Resource
 app.post('/api/user/resource/add', Resource.addResource);
 
-app.listen(3001);
+PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on ${PORT}`);
+});
