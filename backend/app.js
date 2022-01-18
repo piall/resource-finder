@@ -2,9 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const SignUp = require('./methods/signup');
-const SignIn = require('./methods/signin');
-const Resource = require('./methods/resource');
+const SignUp = require('./controllers/signup');
+const SignIn = require('./controllers/signin');
+const Resource = require('./controllers/resource');
 
 const app = express();
 
