@@ -18,7 +18,7 @@ async function addResource(req, res) {
     await resource.save();
     res.send({
       success: true,
-      resource: resource,
+      data: resource,
     });
   } catch (error) {
     console.log(error);

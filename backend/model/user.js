@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  userID: {
-    type: String,
-    unique: true,
-    immutable: true,
-  },
   name: String,
   email: String,
   password: String,
@@ -17,4 +12,4 @@ const userSchema = new mongoose.Schema({
   accountDisabled: Boolean,
 });
 
-module.exports = mongoose.model('resource', userSchema);
+module.exports = mongoose.model('user', userSchema);
