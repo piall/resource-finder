@@ -14,21 +14,23 @@ import { HiOutlineTrash } from 'react-icons/hi';
 
 import AdminLayout from '../../../src/components/layout/AdminLayout';
 import {
+  API_DeleteResource,
   API_GetResource,
   API_GetTopic,
   API_GetUser,
 } from '../../../src/routes/apiRoute';
 import AxiosMethod from '../../../src/axios/AxiosMethod';
+import { Toaster } from 'react-hot-toast';
 
 export default function Topic() {
   const [resourceData, setResourceData] = useState([]);
+  const [clickedResource, setClickedResource] = useState();
   const [users, setUsers] = useState([]);
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(false);
   const [toastStatus, setToastStatus] = useState(false);
   //modal state
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
   //modal handler
   const handleDeleteModal = () => {
     setDeleteModalOpen(!deleteModalOpen);
@@ -73,6 +75,18 @@ export default function Topic() {
     return user.email;
   };
 
+  const deleteResource = async () => {
+    setLoading(true);
+    setToastStatus(true);
+    await AxiosMethod.deleteData(
+      `${API_DeleteResource}/${clickedResource}`,
+      'Deleted'
+    );
+    setLoading(false);
+    getResource();
+    handleDeleteModal();
+  };
+
   useEffect(() => {
     getResource();
     getUser();
@@ -111,7 +125,11 @@ export default function Topic() {
                   <TableCell>{getTopicName(resource.topicID)}</TableCell>
                   <TableCell>{getUserEmail(resource.userID)}</TableCell>
                   <TableCell>
-                    <Button>
+                    <Button
+                      onClick={() => {
+                        setClickedResource(resource._id);
+                      }}
+                    >
                       <HiOutlineTrash onClick={handleDeleteModal} />
                     </Button>
                   </TableCell>
@@ -130,7 +148,13 @@ export default function Topic() {
           <div className="modal-body">
             <p>Continue to delete?</p>
             <div className="btn-container">
-              <Button variant="contained" className="danger">
+              <Button
+                variant="contained"
+                className="danger"
+                onClick={() => {
+                  deleteResource();
+                }}
+              >
                 Yes
               </Button>
               <Button
