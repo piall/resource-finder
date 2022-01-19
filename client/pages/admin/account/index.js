@@ -14,16 +14,17 @@ import { AiOutlineStop } from 'react-icons/ai';
 
 import AdminLayout from '../../../src/components/layout/AdminLayout';
 import {
+  API_DisableUser,
   API_GetResource,
   API_GetTopic,
   API_GetUser,
 } from '../../../src/routes/apiRoute';
 import AxiosMethod from '../../../src/axios/AxiosMethod';
+import { Toaster } from 'react-hot-toast';
 
 export default function Account() {
-  const [resourceData, setResourceData] = useState([]);
   const [users, setUsers] = useState([]);
-  const [topics, setTopics] = useState([]);
+  const [clickedUser, setClickedUser] = useState('');
   const [loading, setLoading] = useState(false);
   const [toastStatus, setToastStatus] = useState(false);
   //modal state
@@ -42,6 +43,22 @@ export default function Account() {
     setUsers(response.data);
   };
 
+  const disableUser = async () => {
+    setLoading(true);
+    setToastStatus(true);
+    const response = await AxiosMethod.postData(
+      API_DisableUser,
+      {
+        id: clickedUser,
+      },
+      'Disabled'
+    );
+    handleDeleteModal();
+    setLoading(false);
+    getUser();
+    console.log(response);
+  };
+
   useEffect(() => {
     getUser();
   }, []);
@@ -57,6 +74,7 @@ export default function Account() {
               <TableCell>Name</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Role</TableCell>
+              <TableCell>Status</TableCell>
               <TableCell>
                 {/* <HiOutlineTrash onClick={handleDeleteModal} /> */}
                 Action
@@ -70,7 +88,15 @@ export default function Account() {
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.isUser ? 'User' : 'Admin'}</TableCell>
                 <TableCell>
-                  <Button>
+                  {user.accountDisabled ? 'Disabled' : 'Active'}
+                </TableCell>
+                <TableCell>
+                  <Button
+                    onClick={() => {
+                      setClickedUser(user._id);
+                    }}
+                    disabled={user.accountDisabled}
+                  >
                     <AiOutlineStop onClick={handleDeleteModal} />
                   </Button>
                 </TableCell>
@@ -89,7 +115,13 @@ export default function Account() {
           <div className="modal-body">
             <p>Continue to disable?</p>
             <div className="btn-container">
-              <Button variant="contained" className="danger">
+              <Button
+                variant="contained"
+                className="danger"
+                onClick={() => {
+                  disableUser();
+                }}
+              >
                 Yes
               </Button>
               <Button
