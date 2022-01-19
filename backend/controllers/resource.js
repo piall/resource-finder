@@ -3,10 +3,12 @@ const parseURL = require('../helpers/parseURL');
 
 async function addResource(req, res) {
   const url = await parseURL(req.body.link);
+  console.log('/////', url);
   const resource = new ResourceModel({
     ...req.body,
     title: url.title,
     description: url.description,
+    image: url.image,
     vote: {
       beginner: 0,
       intermediate: 0,
