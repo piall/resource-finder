@@ -33,7 +33,7 @@ export default function SignIn() {
       if (response.data.isUser) {
         Router.push('/user');
       } else {
-        Router.push('/admin');
+        Router.push('/admin/account');
       }
     }
     if (response?.data.accountDisabled) {

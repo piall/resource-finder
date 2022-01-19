@@ -1,27 +1,77 @@
 import Link from 'next/link';
-import { Button } from '@material-ui/core';
+import { useState } from 'react';
+import { Button, Modal, TextField } from '@material-ui/core';
 import { HiPlus, HiPencil, HiOutlineTrash } from 'react-icons/hi';
+import AdminLayout from '../../../src/components/layout/AdminLayout';
+import Topics from '../../../src/components/private/topic/Topics';
 
 export default function Topic() {
+  const [addTopicModalOpen, setAddTopicModal] = useState(false);
+  const [topicName, setTopicName] = useState('');
+  const [image, setImage] = useState('');
+
+  const handleTopicModal = () => {
+    setAddTopicModal(!addTopicModalOpen);
+  };
+
+  const addTopic = async () => {};
+
   return (
-    <div className="page-container-scroll">
-      <div className="page-container">
-        <div className="btn-container">
-          <Button variant="contained" className="purple" startIcon={<HiPlus />}>
-            <Link href="/admin/topic/add">Add Topic</Link>
-          </Button>
-          <Button variant="contained" color="primary" startIcon={<HiPencil />}>
-            Edit Topic
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<HiOutlineTrash />}
-          >
-            Delete Topic
-          </Button>
-        </div>
+    <AdminLayout>
+      <div className="title-with-btn-container">
+        <h2 className="title">Topics</h2>
+        <Button
+          variant="contained"
+          className="purple"
+          startIcon={<HiPlus />}
+          onClick={handleTopicModal}
+        >
+          Add Topic
+        </Button>
       </div>
-    </div>
+
+      <Topics />
+
+      <Modal
+        open={addTopicModalOpen}
+        onClose={handleTopicModal}
+        aria-labelledby="add-topic-modal"
+      >
+        <div className="modal-container">
+          <div className="modal-body">
+            <TextField
+              required
+              fullWidth
+              label="Topic Name"
+              placeholder="Enter Topic Name"
+              variant="outlined"
+              onChange={(e) => {
+                setTopicName(e.target.value);
+              }}
+            />
+
+            <TextField
+              required
+              fullWidth
+              variant="outlined"
+              type="file"
+              onChange={(e) => {
+                setTopicName(e.target.value);
+              }}
+            />
+            <center>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<HiPlus />}
+                onClick={addTopic}
+              >
+                Add
+              </Button>
+            </center>
+          </div>
+        </div>
+      </Modal>
+    </AdminLayout>
   );
 }
