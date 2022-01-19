@@ -1,2 +1,10 @@
-export const API_SignUp = '/signup';
-export const API_SignIn = '/signin';
+export const API_SignUp = '/api/signup';
+export const API_SignIn = '/api/signin';
+export const API_AddTopic = '/api/topic/add';
+export const API_GetTopic = '/api/topic';
+export const API_GetResource = '/api/user/resource';
+export const API_AddResource = '/api/user/resource/add';
+export const API_VoteResource = '/api/user/resource/vote';
+export const API_GetUser = '/api/user';
+export const API_DisableUser = '/api/user/disable';
+export const API_DeleteResource = '/api/admin/resource';
