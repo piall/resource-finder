@@ -7,6 +7,7 @@ import { DiJavascript1 } from 'react-icons/di';
 import styles from './Home.module.scss';
 import Navbar from './Navbar';
 import Footer from '../common/Footer';
+import Topics from '../private/topic/Topics';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,29 +46,19 @@ export default function PublicHome() {
               <h1>About</h1>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-              commodi voluptate doloremque! Cupiditate nostrum unde perferendis!
-              Qui, nobis quis repellat quasi inventore illum, iure eaque
-              asperiores mollitia pariatur consectetur doloremque!
+              Resource Finder aims those people who learns topic by searching on
+              search engine. But search engine has not made for learning
+              purpose. This platform tries to solve this problem. Anyone can
+              share any resources other can vote those for learning level by
+              doing that each one helps each other to know which topic is for
+              which learning level
             </p>
           </section>
           <section id="Topics" className={styles.section}>
             <div className="title">
               <h1>TOPICS</h1>
             </div>
-            <div className={styles.topics}>
-              <Grid container alignItems="center" spacing={2}>
-                <Grid item xs={3}>
-                  <DiJavascript1 />
-                </Grid>
-                <Grid item xs={3}>
-                  <DiJavascript1 />
-                </Grid>
-                <Grid item xs={3}>
-                  <DiJavascript1 />
-                </Grid>
-              </Grid>
-            </div>
+            <Topics />
           </section>
         </div>
       </div>
