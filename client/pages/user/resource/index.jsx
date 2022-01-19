@@ -258,25 +258,26 @@ export default function Topic() {
       </Grid>
 
       <Grid container spacing={2}>
-        {filteredresourceData.map((resource) => {
-          return (
-            <Grid item>
-              <Grid container>
-                <Grid item xs={2}>
-                  {getMaxVote(resource.vote, resource.topicID, resource._id)}
-                </Grid>
-                <Grid item xs={12} md={10}>
-                  <Resource
-                    title={resource.title}
-                    description={resource.description}
-                    imgURL={resource.image}
-                    link={resource.link}
-                  />
+        {topicData.length > 0 &&
+          filteredresourceData.map((resource) => {
+            return (
+              <Grid item>
+                <Grid container>
+                  <Grid item xs={2}>
+                    {getMaxVote(resource.vote, resource.topicID, resource._id)}
+                  </Grid>
+                  <Grid item xs={12} md={10}>
+                    <Resource
+                      title={resource.title}
+                      description={resource.description}
+                      imgURL={resource.image}
+                      link={resource.link}
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          );
-        })}
+            );
+          })}
       </Grid>
 
       <Modal
