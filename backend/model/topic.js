@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const topicSchema = new mongoose.Schema({
-  topicID: {
-    type: String,
-    unique: true,
-    immutable: true,
-  },
   name: {
     type: String,
     unique: true,
@@ -13,4 +8,4 @@ const topicSchema = new mongoose.Schema({
   icon: String,
 });
 
-module.exports = mongoose.model('resource', topicSchema);
+module.exports = mongoose.model('topic', topicSchema);

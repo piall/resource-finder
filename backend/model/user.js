@@ -1,14 +1,23 @@
 const mongoose = require('mongoose');
 
+const votedAuthor = {
+  authorID: mongoose.Types.ObjectId,
+  topicID: mongoose.Types.ObjectId,
+};
+
+const votedResource = {
+  resourceID: mongoose.Types.ObjectId,
+  vote: String,
+};
+
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  votedTopics: [String],
-  votedAutors: [String],
+  votedAutors: [votedAuthor],
+  votedResources: [votedResource],
   isAdmin: Boolean,
   isUser: Boolean,
-  token: String,
   accountDisabled: Boolean,
 });
 

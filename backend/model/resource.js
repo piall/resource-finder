@@ -8,6 +8,7 @@ const resourceSchema = new mongoose.Schema({
   },
   title: String,
   description: String,
+  image: String,
   vote: voteSchema,
   topicID: {
     type: mongoose.Types.ObjectId,
