@@ -16,6 +16,26 @@ async function getUser(req, res) {
   }
 }
 
+async function disableUser(req, res) {
+  try {
+    const user = await UserModel.findOne({ id: req.body.id });
+    console.log(user);
+    user.accountDisabled = true;
+    await user.save();
+    res.send({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.send({
+      success: false,
+      error: error,
+    });
+  }
+}
+
 module.exports = {
   getUser,
+  disableUser,
 };
