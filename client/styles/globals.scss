@@ -261,6 +261,30 @@ div[aria-labelledby='delete-modal'] > .modal-container {
   }
 }
 
+div[aria-labelledby='add-resource-modal'] > .modal-container {
+  .modal-body {
+    .MuiInputBase-root {
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+
+div[aria-labelledby='add-topic-modal'] > .modal-container {
+  .modal-body {
+    .MuiInputBase-root {
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+
 /*Home Page */
 // .home-topic {
 // }
