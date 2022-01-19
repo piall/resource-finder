@@ -7,6 +7,7 @@ async function signUp(req, res) {
   const exists = await UserModel.findOne({ email });
 
   if (exists) {
+    res.status(406);
     res.send({
       success: false,
       error: 'Email exists',
@@ -19,16 +20,21 @@ async function signUp(req, res) {
   req.body.password = await bcrypt.hash(password, salt);
   const user = new UserModel({
     ...req.body,
+    isAdmin: false,
+    isUser: true,
+    accountDisabled: false,
   });
 
   try {
     await user.save();
+    res.status(200);
     res.send({
       success: true,
       data: user,
     });
   } catch (error) {
     console.log(error);
+    res.status(500);
     res.send({
       success: false,
       error: error,

@@ -31,6 +31,24 @@ async function addResource(req, res) {
   }
 }
 
+async function getResoure(req, res) {
+  try {
+    const resources = await ResourceModel.find();
+    res.status(200);
+    res.send({
+      success: true,
+      data: resources,
+    });
+  } catch (err) {
+    res.status(500);
+    res.send({
+      success: false,
+      error: err,
+    });
+  }
+}
+
 module.exports = {
   addResource,
+  getResoure,
 };
