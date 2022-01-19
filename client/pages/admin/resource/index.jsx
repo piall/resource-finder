@@ -65,12 +65,12 @@ export default function Topic() {
     return topic.name;
   };
 
-  const getUserName = (id) => {
+  const getUserEmail = (id) => {
     console.log(id);
 
     const user = users.find((user) => user._id === id);
     console.log(user);
-    return user.name;
+    return user.email;
   };
 
   useEffect(() => {
@@ -109,7 +109,7 @@ export default function Topic() {
                     </a>
                   </TableCell>
                   <TableCell>{getTopicName(resource.topicID)}</TableCell>
-                  <TableCell>{getUserName(resource.userID)}</TableCell>
+                  <TableCell>{getUserEmail(resource.userID)}</TableCell>
                   <TableCell>
                     <Button>
                       <HiOutlineTrash onClick={handleDeleteModal} />
