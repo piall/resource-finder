@@ -4,7 +4,7 @@ import axiosInstance from './axiosInstance';
 class AxiosMethod {
   static async getData(url, errorMessage = 'An error occured') {
     try {
-      const response = await axiosInstance.get(url, data);
+      const response = await axiosInstance.get(url);
       return response.data;
     } catch (error) {
       toast.error(errorMessage);
@@ -14,12 +14,12 @@ class AxiosMethod {
   static async postData(
     url,
     data,
-    successMessage,
+    successMessage = null,
     errorMessage = 'An error occured'
   ) {
     try {
       const response = await axiosInstance.post(url, data);
-      toast.success(successMessage);
+      successMessage && toast.success(successMessage);
       return response.data;
     } catch (error) {
       toast.error(errorMessage);
