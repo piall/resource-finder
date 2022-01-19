@@ -25,6 +25,20 @@ class AxiosMethod {
       toast.error(errorMessage);
     }
   }
+
+  static async deleteData(
+    url,
+    successMessage = null,
+    errorMessage = 'An error occured'
+  ) {
+    try {
+      const response = await axiosInstance.delete(url);
+      successMessage && toast.success(successMessage);
+      return response.data;
+    } catch (error) {
+      toast.error(errorMessage);
+    }
+  }
 }
 
 export default AxiosMethod;
