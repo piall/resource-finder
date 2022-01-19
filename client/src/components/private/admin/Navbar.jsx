@@ -18,10 +18,10 @@ export default function AdminNavbar() {
           </Link>
         </p>
         <div className="links-container">
-          <Link href="/admin/">Home</Link>
+          <Link href="/admin/account">Home</Link>
           <Link href="/admin/topic">Topic</Link>
           <Link href="/admin/resource">Resource</Link>
-          <Link href="/admin/author">Author</Link>
+          {/* <Link href="/admin/author">Author</Link> */}
         </div>
         <Button variant="contained" color="primary" onClick={signOut}>
           Sign Out

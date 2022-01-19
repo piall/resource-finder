@@ -21,7 +21,7 @@ export default function UserNavbar() {
           <Link href="/user/">Home</Link>
           <Link href="/user/topic">Topic</Link>
           <Link href="/user/resource">Resource</Link>
-          <Link href="/user/author">Author</Link>
+          {/* <Link href="/user/author">Author</Link> */}
         </div>
         <Button variant="contained" color="primary" onClick={signOut}>
           Sign Out
