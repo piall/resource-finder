@@ -1,29 +1,43 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Grid } from '@material-ui/core';
+import { API_GetTopic } from '../../../routes/apiRoute';
+import AxiosMethod from '../../../axios/AxiosMethod';
 
 import TopicCard from './TopicCard';
 
 export default function Topics() {
+  const [topics, setTopics] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [toastStatus, setToastStatus] = useState(false);
+
+  const getTopic = async () => {
+    setLoading(true);
+    const response = await AxiosMethod.getData(API_GetTopic);
+    setLoading(false);
+    console.log(response);
+    setTopics(response.data);
+  };
+
+  useEffect(() => {
+    getTopic();
+  }, []);
   return (
     <Grid container spacing={2} justifyContent="center" alignItems="center">
-      <Grid item>
-        <Link href="/user/resource/js">
-          <TopicCard
-            imageURL="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
-            voteCount="100"
-            resourceCount="1"
-          />
-        </Link>
-      </Grid>
-      <Grid item>
-        <Link href="/user/resource/python">
-          <TopicCard
-            imageURL="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png"
-            voteCount="0"
-            resourceCount="1"
-          />
-        </Link>
-      </Grid>
+      {topics.map((topic) => {
+        return (
+          <Grid item>
+            <Link href="/user/resource/js">
+              <TopicCard
+                imageURL={topic.icon}
+                voteCount="100"
+                resourceCount="1"
+                topicName={topic.name}
+              />
+            </Link>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 }
