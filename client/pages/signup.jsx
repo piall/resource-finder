@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Router from 'next/router';
 import { Grid, TextField, Button } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Toaster } from 'react-hot-toast';
@@ -18,7 +19,7 @@ export default function SignUp() {
   const [toastStatus, setToastStatus] = useState(false);
 
   //handler
-  const signUpHandler = async () => {
+  const createAccount = async () => {
     setLoading(true);
     setToastStatus(true);
     const data = {
@@ -26,11 +27,14 @@ export default function SignUp() {
       email,
       password,
     };
-    await AxiosMethod.postData(
+    const response = await AxiosMethod.postData(
       API_SignUp,
       data,
       'Successfully Created Account'
     );
+    if (response.success) {
+      Router.push('/login');
+    }
     setLoading(false);
   };
 
@@ -61,6 +65,7 @@ export default function SignUp() {
                 label="Email"
                 placeholder="Your Email"
                 value={email}
+                type="email"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -71,6 +76,7 @@ export default function SignUp() {
                 label="Password"
                 placeholder="Your Password"
                 value={password}
+                type="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -81,13 +87,14 @@ export default function SignUp() {
                 label="Confirm Password"
                 placeholder="Retype Password"
                 value={confirmPassword}
+                type="password"
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
                 }}
               />
             </Grid>
           </Grid>
-          <Button variant="contained" color="primary" onClick={signUpHandler}>
+          <Button variant="contained" color="primary" onClick={createAccount}>
             Sign Up
           </Button>
           {loading && <CircularProgress />}

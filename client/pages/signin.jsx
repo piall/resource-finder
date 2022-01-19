@@ -1,13 +1,15 @@
 import Link from 'next/link';
+import Router from 'next/router';
 import { useState } from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Toaster } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 import Navbar from '../src/components/public/Navbar';
 import Footer from '../src/components/common/Footer';
 import AxiosMethod from '../src/axios/AxiosMethod';
 import { API_SignIn } from '../src/routes/apiRoute';
+import { setInLocalStorage } from '../src/helpers/localStorage';
 
 export default function SignIn() {
   //state
@@ -24,7 +26,20 @@ export default function SignIn() {
       email,
       password,
     };
-    await AxiosMethod.postData(API_SignIn, data);
+    const response = await AxiosMethod.postData(API_SignIn, data);
+    console.log(response);
+    if (response?.success && !response?.data.accountDisabled) {
+      setInLocalStorage('user', response.data);
+      if (response.data.isUser) {
+        Router.push('/user');
+      } else {
+        Router.push('/admin');
+      }
+    }
+    if (response?.data.accountDisabled) {
+      toast.error('Your account has disabled');
+    }
+    console.log(response);
     setLoading(false);
   };
 
@@ -45,6 +60,7 @@ export default function SignIn() {
                 label="Email"
                 placeholder="Your Email"
                 value={email}
+                type="email"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -55,6 +71,7 @@ export default function SignIn() {
                 label="Password"
                 placeholder="Your Password"
                 value={password}
+                type="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
