@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import { useState } from 'react';
-import { Button, Modal, TextField } from '@material-ui/core';
+import { useEffect, useState } from 'react';
+import { Button, Modal, TextField, Grid } from '@material-ui/core';
 import { HiPlus, HiPencil, HiOutlineTrash } from 'react-icons/hi';
 import AdminLayout from '../../../src/components/layout/AdminLayout';
 import Topics from '../../../src/components/private/topic/Topics';
 import AxiosMethod from '../../../src/axios/AxiosMethod';
-import { API_AddTopic } from '../../../src/routes/apiRoute';
+import { API_AddTopic, API_GetTopic } from '../../../src/routes/apiRoute';
+import TopicCard from '../../../src/components/private/topic/TopicCard';
+import { Toaster } from 'react-hot-toast';
 
 export default function Topic() {
   const [addTopicModalOpen, setAddTopicModal] = useState(false);
@@ -13,6 +15,7 @@ export default function Topic() {
   const [icon, setIcon] = useState('');
   const [loading, setLoading] = useState(false);
   const [toastStatus, setToastStatus] = useState(false);
+  const [topics, setTopics] = useState([]);
 
   const handleTopicModal = () => {
     setAddTopicModal(!addTopicModalOpen);
@@ -33,10 +36,24 @@ export default function Topic() {
     console.log(response);
     setLoading(false);
     handleTopicModal();
+    getTopic();
   };
+
+  const getTopic = async () => {
+    setLoading(true);
+    const response = await AxiosMethod.getData(API_GetTopic);
+    setLoading(false);
+    console.log(response);
+    setTopics(response.data);
+  };
+
+  useEffect(() => {
+    getTopic();
+  }, []);
 
   return (
     <AdminLayout>
+      {toastStatus && <Toaster position="top-center" reverseOrder={false} />}
       <div className="title-with-btn-container">
         <h2 className="title">Topics</h2>
         <Button
@@ -49,7 +66,20 @@ export default function Topic() {
         </Button>
       </div>
 
-      <Topics />
+      <Grid container spacing={2} justifyContent="center" alignItems="center">
+        {topics.map((topic) => {
+          return (
+            <Grid item>
+              <TopicCard
+                imageURL={topic.icon}
+                voteCount="100"
+                resourceCount="1"
+                topicName={topic.name}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
 
       <Modal
         open={addTopicModalOpen}
@@ -95,6 +125,7 @@ export default function Topic() {
                 color="primary"
                 startIcon={<HiPlus />}
                 onClick={addTopic}
+                disabled={!name || !icon}
               >
                 Add
               </Button>

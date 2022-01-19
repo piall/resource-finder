@@ -32,8 +32,8 @@ export default function SignUp() {
       data,
       'Successfully Created Account'
     );
-    if (response.success) {
-      Router.push('/login');
+    if (response?.success) {
+      Router.push('/signin');
     }
     setLoading(false);
   };
@@ -92,9 +92,22 @@ export default function SignUp() {
                   setConfirmPassword(e.target.value);
                 }}
               />
+              <p className="info">
+                Password length must be atleast 6 character
+              </p>
             </Grid>
           </Grid>
-          <Button variant="contained" color="primary" onClick={createAccount}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={createAccount}
+            disabled={
+              confirmPassword !== password ||
+              password.length < 6 ||
+              !name ||
+              !email
+            }
+          >
             Sign Up
           </Button>
           {loading && <CircularProgress />}

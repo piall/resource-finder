@@ -311,7 +311,7 @@ export default function Topic() {
                 control={<Radio />}
                 label="Advance"
               />
-              <Button startIcon={<AiOutlineClear />} />
+              {/* <Button startIcon={<AiOutlineClear />} /> */}
             </RadioGroup>
             <center>
               <Button
@@ -321,6 +321,7 @@ export default function Topic() {
                 onClick={() => {
                   addVote();
                 }}
+                disabled={!clickedCategoryForVote}
               >
                 Vote
               </Button>
@@ -366,6 +367,7 @@ export default function Topic() {
                 color="primary"
                 startIcon={<HiPlus />}
                 onClick={addResource}
+                disabled={selectedTopic === '-1' || !link}
               >
                 Add
               </Button>

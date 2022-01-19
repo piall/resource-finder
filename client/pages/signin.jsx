@@ -78,7 +78,12 @@ export default function SignIn() {
               />
             </Grid>
           </Grid>
-          <Button variant="contained" color="primary" onClick={signInHandler}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={signInHandler}
+            disabled={!email || !password}
+          >
             Sign In
           </Button>
           <p style={{ marginTop: '10px' }}>
