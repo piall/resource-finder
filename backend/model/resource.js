@@ -15,8 +15,6 @@ const resourceSchema = new mongoose.Schema({
   },
   userID: {
     type: mongoose.Types.ObjectId,
-    // unique: true,
-    // immutable: true,
   },
 });
 

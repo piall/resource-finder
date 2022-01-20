@@ -32,6 +32,10 @@ import {
   API_VoteResource,
 } from '../../../src/routes/apiRoute';
 import { getAccountID } from '../../../src/helpers/account';
+import {
+  getFromLocalStorage,
+  setInLocalStorage,
+} from '../../../src/helpers/localStorage';
 
 export default function Topic() {
   //state
@@ -61,7 +65,7 @@ export default function Topic() {
   const getTopicName = (id) => {
     const topic = topicData.find((topic) => topic._id === id);
     console.log(topic);
-    return topic.name;
+    return topic?.name;
   };
   const getMaxVote = (vote, topicID, resourceID) => {
     console.log(vote, topicID, resourceID);
@@ -261,6 +265,11 @@ export default function Topic() {
       data,
       'Successfully Added Vote'
     );
+
+    // const user = getFromLocalStorage('user');
+    // user.votedResources.push({ resourceID: clickedResourceForVote });
+    // setInLocalStorage('user', user);
+
     console.log(response);
     setLoading(false);
     handleVoteModal();

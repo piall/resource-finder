@@ -18,14 +18,19 @@ mongoose.connect(
   'mongodb+srv://pial:resource-finder@resource-finder.4ck71.mongodb.net/resource-finder?retryWrites=true&w=majority'
 );
 
+//mongodb+srv://pial:resource-finder@resource-finder.4ck71.mongodb.net/resource-finder?retryWrites=true&w=majority
+//mongodb://127.0.0.1:27017/resource-finder;
+
 app.post('/api/signup', SignUp);
 app.post('/api/signin', SignIn);
 
 app.get('/api/user', User.getUser);
+app.get('/api/user/:id', User.getCurrentUser);
 app.post('/api/user/disable', User.disableUser);
 
 app.get('/api/topic', Topic.getTopic);
 app.post('/api/topic/add', Topic.addTopic);
+app.delete('/api/admin/topic/:id', Topic.deleteTopic);
 
 app.get('/api/user/resource', Resource.getResoure);
 app.delete('/api/admin/resource/:id', Resource.deleteResoure);

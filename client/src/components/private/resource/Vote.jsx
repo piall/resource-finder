@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core';
 import { MdHowToVote } from 'react-icons/md';
+import { getFromLocalStorage } from '../../../helpers/localStorage';
 
 export default function Vote({
   handleVoteModal,
@@ -8,6 +9,17 @@ export default function Vote({
   topic,
   resourceID,
 }) {
+  const voteStatus = () => {
+    const user = getFromLocalStorage('user');
+    if (user) {
+      const found = user.votedResources.find(
+        (resource) => resource.resourceID === resourceID
+      );
+      return found ? true : false;
+    }
+    return false;
+  };
+
   return (
     <div className="resource-left-container">
       <Button
@@ -17,6 +29,7 @@ export default function Vote({
         onClick={() => {
           handleVoteModal(resourceID);
         }}
+        disabled={voteStatus()}
       >
         Vote
       </Button>

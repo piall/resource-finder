@@ -63,8 +63,7 @@ export default function Topic() {
   const getTopicName = (id) => {
     console.log(id, topics);
     const topic = topics.find((topic) => topic._id === id);
-    console.log(topic);
-    return topic.name;
+    return topic ? topic.name : '';
   };
 
   const getUserEmail = (id) => {
@@ -72,7 +71,7 @@ export default function Topic() {
 
     const user = users.find((user) => user._id === id);
     console.log(user);
-    return user.email;
+    return user ? user.email : '';
   };
 
   const deleteResource = async () => {
@@ -105,10 +104,7 @@ export default function Topic() {
               <TableCell>URL</TableCell>
               <TableCell>Topic</TableCell>
               <TableCell>Added By</TableCell>
-              <TableCell>
-                {/* <HiOutlineTrash onClick={handleDeleteModal} /> */}
-                Action
-              </TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

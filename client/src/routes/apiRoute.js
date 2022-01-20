@@ -8,3 +8,4 @@ export const API_VoteResource = '/api/user/resource/vote';
 export const API_GetUser = '/api/user';
 export const API_DisableUser = '/api/user/disable';
 export const API_DeleteResource = '/api/admin/resource';
+export const API_DeleteTopic = '/api/admin/topic';

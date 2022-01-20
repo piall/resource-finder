@@ -1,16 +1,34 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Button, Modal, TextField, Grid } from '@material-ui/core';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Button,
+  Paper,
+  Modal,
+  TextField,
+  Grid,
+} from '@material-ui/core';
 import { HiPlus, HiPencil, HiOutlineTrash } from 'react-icons/hi';
 import AdminLayout from '../../../src/components/layout/AdminLayout';
 import Topics from '../../../src/components/private/topic/Topics';
 import AxiosMethod from '../../../src/axios/AxiosMethod';
-import { API_AddTopic, API_GetTopic } from '../../../src/routes/apiRoute';
+import {
+  API_AddTopic,
+  API_DeleteTopic,
+  API_GetTopic,
+} from '../../../src/routes/apiRoute';
 import TopicCard from '../../../src/components/private/topic/TopicCard';
 import { Toaster } from 'react-hot-toast';
 
 export default function Topic() {
   const [addTopicModalOpen, setAddTopicModal] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [clickedTopic, setClickedTopic] = useState();
   const [name, setName] = useState('');
   const [icon, setIcon] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,6 +37,10 @@ export default function Topic() {
 
   const handleTopicModal = () => {
     setAddTopicModal(!addTopicModalOpen);
+  };
+
+  const handleDeleteModal = () => {
+    setDeleteModalOpen(!deleteModalOpen);
   };
 
   const addTopic = async () => {
@@ -45,6 +67,18 @@ export default function Topic() {
     setLoading(false);
     console.log(response);
     setTopics(response.data);
+  };
+
+  const deleteTopic = async () => {
+    setLoading(true);
+    setToastStatus(true);
+    await AxiosMethod.deleteData(
+      `${API_DeleteTopic}/${clickedTopic}`,
+      'Deleted'
+    );
+    setLoading(false);
+    getTopic();
+    handleDeleteModal();
   };
 
   useEffect(() => {
@@ -80,6 +114,63 @@ export default function Topic() {
           );
         })}
       </Grid>
+
+      <TableContainer className="custom-table-container" component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Topic</TableCell>
+              <TableCell>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {topics.map((topic) => (
+              <TableRow key={topic._id}>
+                <TableCell>{topic.name}</TableCell>
+                <TableCell>
+                  <Button
+                    onClick={() => {
+                      setClickedTopic(topic._id);
+                    }}
+                  >
+                    <HiOutlineTrash onClick={handleDeleteModal} />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <Modal
+        open={deleteModalOpen}
+        onClose={handleDeleteModal}
+        aria-labelledby="delete-modal"
+      >
+        <div className="modal-container">
+          <div className="modal-body">
+            <p>Continue to delete?</p>
+            <div className="btn-container">
+              <Button
+                variant="contained"
+                className="danger"
+                onClick={() => {
+                  deleteTopic();
+                }}
+              >
+                Yes
+              </Button>
+              <Button
+                variant="contained"
+                className="purple"
+                onClick={handleDeleteModal}
+              >
+                No
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
 
       <Modal
         open={addTopicModalOpen}

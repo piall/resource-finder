@@ -41,6 +41,7 @@ async function addResource(req, res) {
 async function getResoure(req, res) {
   try {
     const resources = await ResourceModel.find();
+    console.log('--------', resources);
     res.status(200);
     res.send({
       success: true,
