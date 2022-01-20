@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   Grid,
   Button,
@@ -9,6 +10,7 @@ import {
   TextField,
   MenuItem,
   Select,
+  CircularProgress,
 } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -33,7 +35,7 @@ import { getAccountID } from '../../../src/helpers/account';
 
 export default function Topic() {
   //state
-  const [selectedSortValue, setSelectedSortValue] = useState('Sort By');
+  const [selectedSortValue, setSelectedSortValue] = useState('Sort From');
   const [selectedTopic, setSelectedTopic] = useState('-1');
   const [topicData, setTopicData] = useState([]);
   const [resourceData, setResourceData] = useState([]);
@@ -41,7 +43,7 @@ export default function Topic() {
   const [link, setLink] = useState('');
   const [clickedResourceForVote, setClickedResourceForVote] = useState('');
   const [clickedCategoryForVote, setClickedCategoryForVote] = useState('');
-
+  const [customResult, setCustomResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [toastStatus, setToastStatus] = useState(false);
 
@@ -91,13 +93,20 @@ export default function Topic() {
     if (searchInput.length > 0) {
       const searchResult = resourceData.filter((resource) => {
         if (
-          resource.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-          resource.description.toLowerCase().includes(searchInput.toLowerCase())
+          resource.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
+          resource.description
+            ?.toLowerCase()
+            .includes(searchInput.toLowerCase())
         ) {
           return resource;
         }
       });
       setFilteredResourceData(searchResult);
+      if (searchResult.length === 0) {
+        getSearchResultFromOutside(searchInput);
+      } else {
+        setCustomResult(false);
+      }
     } else {
       setFilteredResourceData(resourceData);
     }
@@ -105,7 +114,7 @@ export default function Topic() {
 
   const sortResource = (type) => {
     setFilteredResourceData(resourceData);
-    if (type == 'Sort By') {
+    if (type == 'Sort From') {
       return;
     }
     let beginner = resourceData.filter(
@@ -137,6 +146,56 @@ export default function Topic() {
     } else {
       setFilteredResourceData(resourceData);
     }
+  };
+
+  const shapePublicApiData = (result) => {
+    const data = [];
+    for (let i = 0; i < result.length; i++) {
+      data.push({
+        image: result[i].image.url,
+        description: result[i].description,
+        title: result[i].title,
+        link: result[i].url,
+      });
+    }
+    setFilteredResourceData(data);
+    console.log(data);
+  };
+
+  const getSearchResultFromOutside = (searchInput) => {
+    var options = {
+      method: 'GET',
+      url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI',
+      params: {
+        q: searchInput,
+        pageNumber: '1',
+        pageSize: '10',
+        autoCorrect: 'true',
+      },
+      headers: {
+        'x-rapidapi-host': 'contextualwebsearch-websearch-v1.p.rapidapi.com',
+        'x-rapidapi-key': 'f4387ba9d0msh17d7eff9c34b946p10de38jsn17052119f9ad',
+      },
+    };
+    setLoading(true);
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setCustomResult(true);
+        const data = response.data;
+        console.log(data.value);
+        if (data.value.length) {
+          shapePublicApiData(response.data.value);
+          setLoading(false);
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        setLoading(false);
+        toast.error('An error occured');
+      });
   };
 
   //modal state
@@ -235,8 +294,13 @@ export default function Topic() {
               fullWidth
               variant="outlined"
               placeholder="Search resources"
-              onChange={(e) => {
-                searchResourceInDatabase(e.target.value);
+              onKeyDown={(e) => {
+                if (e.target.value.length > 0 && e.key === 'Enter') {
+                  searchResourceInDatabase(e.target.value);
+                } else {
+                  setFilteredResourceData(resourceData);
+                  setCustomResult(false);
+                }
               }}
             />
             <HiSearch />
@@ -249,7 +313,7 @@ export default function Topic() {
             onChange={changeSelectHandler}
             className="custom-select-box"
           >
-            <option value="Sort By">Sort By</option>
+            <option value="Sort From">Sort From</option>
             <option value="beginner">Beginner</option>
             <option value="intermediate">Intermediate</option>
             <option value="advance">Advance</option>
@@ -257,6 +321,7 @@ export default function Topic() {
         </Grid>
       </Grid>
 
+      <center>{loading && <CircularProgress />}</center>
       <Grid container spacing={2}>
         {topicData.length > 0 &&
           filteredresourceData.map((resource) => {
@@ -264,7 +329,8 @@ export default function Topic() {
               <Grid item>
                 <Grid container>
                   <Grid item xs={2}>
-                    {getMaxVote(resource.vote, resource.topicID, resource._id)}
+                    {!customResult &&
+                      getMaxVote(resource.vote, resource.topicID, resource._id)}
                   </Grid>
                   <Grid item xs={12} md={10}>
                     <Resource
