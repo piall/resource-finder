@@ -25,18 +25,19 @@ app.post('/api/signup', SignUp);
 app.post('/api/signin', SignIn);
 
 app.get('/api/user', User.getUser);
-app.get('/api/user/:id', User.getCurrentUser);
 app.post('/api/user/disable', User.disableUser);
 
 app.get('/api/topic', Topic.getTopic);
 app.post('/api/topic/add', Topic.addTopic);
-app.delete('/api/admin/topic/:id', Topic.deleteTopic);
 
 app.get('/api/user/resource', Resource.getResoure);
-app.delete('/api/admin/resource/:id', Resource.deleteResoure);
 app.post('/api/user/resource/add', Resource.addResource);
 
 app.post('/api/user/resource/vote', Vote.voteResource);
+
+app.delete('/api/admin/resource/:id', Resource.deleteResoure);
+app.delete('/api/admin/topic/:id', Topic.deleteTopic);
+app.get('/api/user/:id', User.getCurrentUser);
 
 PORT = process.env.PORT || 5000;
 
