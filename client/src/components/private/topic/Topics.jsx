@@ -28,12 +28,7 @@ export default function Topics() {
         return (
           <Grid item>
             <Link href="/user/resource/js">
-              <TopicCard
-                imageURL={topic.icon}
-                voteCount="100"
-                resourceCount="1"
-                topicName={topic.name}
-              />
+              <TopicCard imageURL={topic.icon} topicName={topic.name} />
             </Link>
           </Grid>
         );

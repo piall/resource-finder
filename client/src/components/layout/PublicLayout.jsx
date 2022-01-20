@@ -1,11 +1,13 @@
 import Footer from '../common/Footer';
 import PublicNavbar from '../public/Navbar';
 
-export default function UserLayout({ children }) {
+export default function PublicLayout({ children }) {
   return (
     <>
       <PublicNavbar />
-      {children}
+      <div className="page-container-scroll">
+        <div className="page-container">{children}</div>
+      </div>
       <Footer />
     </>
   );
