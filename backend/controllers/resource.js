@@ -3,7 +3,14 @@ const parseURL = require('../helpers/parseURL');
 
 async function addResource(req, res) {
   const url = await parseURL(req.body.link);
-  console.log('/////', url);
+  if (url === null) {
+    res.status(406);
+    res.send({
+      success: false,
+      error: 'Inavlid Link',
+    });
+    return;
+  }
   const resource = new ResourceModel({
     ...req.body,
     title: url.title,

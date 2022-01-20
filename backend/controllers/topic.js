@@ -1,6 +1,16 @@
 const TopicModel = require('../model/topic');
+const parseURL = require('../helpers/parseURL');
 
 async function addTopic(req, res) {
+  const url = await parseURL(req.body.icon);
+  if (url === null) {
+    res.status(406);
+    res.send({
+      success: false,
+      error: 'Inavlid Link',
+    });
+    return;
+  }
   const topic = new TopicModel({
     ...req.body,
   });
