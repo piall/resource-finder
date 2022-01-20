@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv= require('dotenv');
 
 const SignUp = require('./controllers/signup');
 const SignIn = require('./controllers/signin');
@@ -11,15 +12,11 @@ const User = require('./controllers/user');
 
 const app = express();
 
+dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(
-  'mongodb+srv://pial:resource-finder@resource-finder.4ck71.mongodb.net/resource-finder?retryWrites=true&w=majority'
-);
-
-//mongodb+srv://pial:resource-finder@resource-finder.4ck71.mongodb.net/resource-finder?retryWrites=true&w=majority
-//mongodb://127.0.0.1:27017/resource-finder;
+mongoose.connect(process.env.MONGODB_CONNECTION_URL);
 
 app.post('/api/signup', SignUp);
 app.post('/api/signin', SignIn);
